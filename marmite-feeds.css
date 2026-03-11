@@ -1,0 +1,131 @@
+/**
+ * marmite-feeds.css
+ * Base styles for the marmite-feeds widget.
+ * Theme-agnostic — customize via CSS custom properties.
+ *
+ * CSS custom properties (override in your theme):
+ *
+ *   --mf-card-bg       Card background          default: #ffffff
+ *   --mf-border        Border color             default: #e0e0e0
+ *   --mf-accent        Accent / top border      default: #0066cc
+ *   --mf-radius        Card border radius       default: 4px
+ *   --mf-text          Link / body text         default: #333333
+ *   --mf-heading-color Widget heading color     default: #0066cc
+ *   --mf-meta-color    Meta / timestamp color   default: #888888
+ *   --mf-label-color   Section label color      default: #888888
+ *   --mf-font-mono     Monospace font stack     default: monospace
+ *   --mf-font-body     Body font stack          default: system-ui, sans-serif
+ *   --mf-columns       Grid columns             default: repeat(auto-fit, minmax(240px, 1fr))
+ *   --mf-gap           Grid gap                 default: 1rem
+ */
+
+/* ── container ──────────────────────────────────────────────── */
+.feeds-container {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--mf-border, #e0e0e0);
+  display: grid;
+  grid-template-columns: var(--mf-columns, repeat(auto-fit, minmax(240px, 1fr)));
+  gap: var(--mf-gap, 1rem);
+}
+
+/* ── section label ──────────────────────────────────────────── */
+.feeds-section-label {
+  grid-column: 1 / -1;
+  font-family: var(--mf-font-mono, monospace);
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--mf-label-color, #888888);
+  margin-bottom: .25rem;
+}
+
+/* ── widget card ────────────────────────────────────────────── */
+.feeds-widget {
+  background: var(--mf-card-bg, #ffffff);
+  border: 1px solid var(--mf-border, #e0e0e0);
+  border-top: 2px solid var(--mf-accent, #0066cc);
+  border-radius: var(--mf-radius, 4px);
+  padding: 1rem 1.1rem;
+}
+
+/* ── widget heading ─────────────────────────────────────────── */
+.feeds-widget h3 {
+  font-family: var(--mf-font-mono, monospace);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--mf-heading-color, #0066cc);
+  margin: 0 0 .75rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.feeds-widget h3::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mf-heading-color, #0066cc);
+  flex-shrink: 0;
+  animation: mf-pulse 2s ease infinite;
+}
+
+@keyframes mf-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+/* ── post list ──────────────────────────────────────────────── */
+.feeds-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.feeds-post-list li {
+  padding: .45rem 0;
+  border-bottom: 1px solid var(--mf-border, #e0e0e0);
+  font-size: .82rem;
+}
+
+.feeds-post-list li:last-child {
+  border-bottom: none;
+}
+
+.feeds-post-list a {
+  color: var(--mf-text, #333333);
+  font-family: var(--mf-font-body, system-ui, sans-serif);
+  line-height: 1.35;
+  display: block;
+  text-decoration: none;
+}
+
+.feeds-post-list a:hover {
+  color: var(--mf-accent, #0066cc);
+}
+
+/* ── meta / loading ─────────────────────────────────────────── */
+.feeds-post-meta {
+  font-family: var(--mf-font-mono, monospace);
+  font-size: .6rem;
+  color: var(--mf-meta-color, #888888);
+  margin-top: .15rem;
+}
+
+.feeds-loading {
+  font-family: var(--mf-font-mono, monospace);
+  font-size: .7rem;
+  color: var(--mf-meta-color, #888888);
+}
+
+/* ── responsive ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .feeds-container {
+    grid-template-columns: 1fr;
+  }
+}

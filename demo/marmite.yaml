@@ -1,0 +1,14 @@
+name: "marmite-feeds demo"
+tagline: "Community feeds widget for Marmite static sites"
+content_path: "content"
+static_path: "static"
+pagination: 3
+enable_search: false
+language: en
+toc: false
+menu:
+  - ["Demos", "demos.html"]
+  - ["marmite-feeds", "https://github.com/raphazilla/marmite-feeds"]
+  - ["Marmite SSG", "https://github.com/rochacbruno/marmite"]
+extra:
+  colormode_toggle: true

@@ -1,0 +1,12 @@
+# Marmite build output
+site/
+/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

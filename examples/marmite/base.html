@@ -1,0 +1,42 @@
+{#
+  Marmite template integration example for marmite-feeds.
+  This shows the minimal changes needed in your base.html (or list.html).
+
+  Files to copy to your theme's static/ folder:
+    - marmite-feeds.js
+    - marmite-feeds.css
+    - feeds-config.js  (rename / edit with your feeds)
+
+  Then add the snippet below to your template where you want the feeds to appear
+  (typically in base.html, inside the main container, after your content).
+#}
+
+{# ── OPTION A: Show feeds only on the homepage ──────────────── #}
+{% if current_page == "index.html" %}
+<div id="feeds-container"></div>
+{% endif %}
+
+{# ── OPTION B: Show feeds on every list/index page ───────────── #}
+{# (place this in list.html instead of base.html) #}
+{# <div id="feeds-container"></div> #}
+
+
+{# ── Load the scripts (add to your {% block scripts %}) ──────── #}
+<link rel="stylesheet" href="{{ url_for(path='static/marmite-feeds.css') }}">
+<script src="{{ url_for(path='static/feeds-config.js') }}"></script>
+<script src="{{ url_for(path='static/marmite-feeds.js') }}"></script>
+
+
+{#
+  ── ALTERNATIVE: inline config (no separate feeds-config.js needed) ──
+
+  <script>
+  window.MarmiteFeeds = {
+    feeds: [
+      { type: 'hackernews', label: 'Hacker News', query: 'linux docker' },
+      { type: 'tabnews',    label: 'TabNews' }
+    ]
+  };
+  </script>
+  <script src="{{ url_for(path='static/marmite-feeds.js') }}"></script>
+#}

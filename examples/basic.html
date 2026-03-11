@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>marmite-feeds — basic example</title>
+  <link rel="stylesheet" href="../marmite-feeds.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 { font-size: 1.2rem; margin-bottom: .25rem; }
+    p  { color: #666; font-size: .9rem; margin-top: 0; }
+  </style>
+</head>
+<body>
+
+  <h1>marmite-feeds demo</h1>
+  <p>Hacker News + TabNews feeds, loaded lazily with 15-minute cache.</p>
+
+  <!-- 1. Container div -->
+  <div id="feeds-container"></div>
+
+  <!-- 2. Config object (must come before the script) -->
+  <script>
+  window.MarmiteFeeds = {
+    containerId:   'feeds-container',
+    postsPerFeed:  5,
+    cacheTtlMs:    15 * 60 * 1000,
+    label:         '// community feeds',
+
+    /* locale: uncomment to use Portuguese */
+    // locale: {
+    //   loading:     'Carregando…',
+    //   unavailable: 'Indisponível',
+    //   rateLimit:   'Rate limit — tente em instantes',
+    //   ago:         ' atrás',
+    // },
+
+    feeds: [
+      {
+        type:      'hackernews',
+        label:     'Hacker News · Linux/DevOps',
+        query:     'linux docker homelab ansible proxmox',
+        tags:      'story',
+        minPoints: 3,
+      },
+      {
+        type:  'hackernews',
+        label: 'Hacker News · Show HN',
+        query: 'show hn',
+        tags:  'show_hn',
+      },
+      {
+        type:  'tabnews',
+        label: 'TabNews',
+      },
+    ],
+  };
+  </script>
+
+  <!-- 3. The library -->
+  <script src="../marmite-feeds.js"></script>
+
+</body>
+</html>
