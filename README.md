@@ -297,6 +297,24 @@ window.MarmiteFeeds = { containerId: 'my-feeds', ... };
 
 ---
 
+## Running the demo locally
+
+Requires [Docker](https://docs.docker.com/get-docker/).
+
+```bash
+git clone https://github.com/raphazilla/marmite-feeds
+cd marmite-feeds
+./demo.sh start    # http://localhost:8000
+./demo.sh stop
+./demo.sh logs
+```
+
+The demo is a real Marmite site using the default theme.
+It shows live feeds from Hacker News, TabNews, DEV.to, GitHub,
+and a custom fetcher — in different layout configurations.
+
+---
+
 ## Browser support
 
 Works in all evergreen browsers. Uses:
