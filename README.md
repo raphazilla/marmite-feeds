@@ -14,6 +14,29 @@ Drop two lines into `_htmlhead.md`, add a container div, done.
 
 ---
 
+## Table of Contents
+
+- [Quick start — default Marmite theme](#quick-start--default-marmite-theme)
+- [Quick start — custom theme](#quick-start--custom-theme)
+- [Configuration reference](#configuration-reference)
+  - [locale](#locale)
+- [Built-in feed types](#built-in-feed-types)
+  - [hackernews](#hackernews)
+  - [tabnews](#tabnews)
+  - [devto](#devto)
+  - [github](#github)
+  - [Source compatibility](#source-compatibility)
+- [Custom fetchers](#custom-fetchers)
+- [CSS customization](#css-customization)
+  - [Using your theme's existing variables](#using-your-themes-existing-variables)
+  - [CSS classes](#css-classes)
+- [Container ID](#container-id)
+- [Running the demo locally](#running-the-demo-locally)
+- [Browser support](#browser-support)
+- [License](#license)
+
+---
+
 ## Quick start — default Marmite theme
 
 No template modification needed. Uses Marmite's built-in fragment files.
