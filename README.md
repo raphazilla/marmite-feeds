@@ -2,10 +2,10 @@
 
 Community feeds widget for [Marmite](https://github.com/rochacbruno/marmite) static sites.
 
-Drop two files into your theme, add a config, done.
+Drop two lines into `_htmlhead.md`, add a container div, done.
 
 - Zero dependencies — pure vanilla JS
-- Built-in support for **Hacker News** (via Algolia) and **TabNews**
+- Built-in support for **Hacker News** (via Algolia), **TabNews**, **DEV.to**, **GitHub**
 - Custom fetcher API for any JSON endpoint with native CORS
 - `sessionStorage` cache (configurable TTL)
 - Lazy-loaded via `IntersectionObserver`
@@ -14,12 +14,45 @@ Drop two files into your theme, add a config, done.
 
 ---
 
-## Quick start
+## Quick start — default Marmite theme
+
+No template modification needed. Uses Marmite's built-in fragment files.
+
+**1. Create `content/_htmlhead.md`** with your config and CDN links:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/raphazilla/marmite-feeds@master/marmite-feeds.css">
+<script>
+window.MarmiteFeeds = {
+  feeds: [
+    { type: 'hackernews', label: 'Hacker News', query: 'linux docker homelab', minPoints: 3 },
+    { type: 'tabnews',    label: 'TabNews' },
+  ],
+};
+</script>
+<script src="https://cdn.jsdelivr.net/gh/raphazilla/marmite-feeds@master/marmite-feeds.js"></script>
+```
+
+**2. Add the container div** wherever you want feeds to appear.
+
+For the homepage hero, create `content/_hero.md`:
+
+```html
+<div id="feeds-container"></div>
+```
+
+That's it. No files to copy, no templates to edit.
+
+---
+
+## Quick start — custom theme
+
+If you already have a custom Marmite theme:
 
 **1. Copy files to your theme's `static/` folder:**
 
 ```
-static/
+theme/static/
 ├── marmite-feeds.js
 ├── marmite-feeds.css
 └── feeds-config.js   ← your config (copy from examples/marmite/)
@@ -30,16 +63,8 @@ static/
 ```js
 window.MarmiteFeeds = {
   feeds: [
-    {
-      type:      'hackernews',
-      label:     'Hacker News',
-      query:     'linux docker homelab',
-      minPoints: 3,
-    },
-    {
-      type:  'tabnews',
-      label: 'TabNews',
-    },
+    { type: 'hackernews', label: 'Hacker News', query: 'linux docker homelab', minPoints: 3 },
+    { type: 'tabnews',    label: 'TabNews' },
   ],
 };
 ```
@@ -52,7 +77,7 @@ window.MarmiteFeeds = {
 <div id="feeds-container"></div>
 {% endif %}
 
-<!-- in your {% block scripts %} -->
+<!-- load the widget -->
 <link rel="stylesheet" href="{{ url_for(path='static/marmite-feeds.css') }}">
 <script src="{{ url_for(path='static/feeds-config.js') }}"></script>
 <script src="{{ url_for(path='static/marmite-feeds.js') }}"></script>
